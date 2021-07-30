@@ -1,0 +1,24 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sky-kt/battleship.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sky-kt/battleship/issues"
+  },
+  "homepage": "https://github.com/sky-kt/battleship#readme",
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "webpack": "^5.47.1",
+    "webpack-cli": "^4.7.2"
+  }
+}
