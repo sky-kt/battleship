@@ -18,6 +18,21 @@ const letterRows = document.querySelectorAll('.letterRow');
   }
 })();
 
+// add tile event listeners
+(() => {
+  const boardTiles = document.querySelectorAll('.boardTile')
+  boardTiles.forEach(boardTile => {
+    boardTile.addEventListener('click', () => {
+      const boardRow = boardTile.parentElement
+      const letter = String.fromCharCode(Array.from(boardRow.children).indexOf(boardTile) + 65)
+      const number = Array.from(boardRow.parentElement.children).indexOf(boardRow) + 1
+      const coordinate = letter + number
+      alert(coordinate)
+    })
+  })
+})();
+
+// add number description tiles
 (() => {
   for (let idx = 0; idx < 10; idx++) {
     numberRows.forEach(numberRow => {
@@ -29,6 +44,7 @@ const letterRows = document.querySelectorAll('.letterRow');
   }
 })();
 
+// add letter description tiles
 (() => {
   for (let idx = 0; idx < 10; idx++) {
     letterRows.forEach(letterRow => {

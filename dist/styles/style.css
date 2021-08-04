@@ -7,8 +7,10 @@ h1 {
   display: flex;
   background-color: #dfdfdf;
   justify-content: space-evenly;
+  align-items: center;
   width: 100%;
   min-width: 1100px;
+  height: 700px;
 }
 .playerContainer {
   width: 550px;
