@@ -62,15 +62,34 @@ h1 {
   border-right: 1px solid black;
   border-bottom: 1px solid black;
 }
-
 .boardTile:hover {
   background-color: #bfbfbf;
 }
-
 .shipTile {
   background-color: blue;
 }
-
+.hitTile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 30px Assistant;
+  color: red;
+  background-color: rgba(255, 79, 79, 0.2);
+}
+.hitTile:hover {
+  background-color: rgba(255, 79, 79, 0.2) !important;
+}
+.missTile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 20px Assistant;
+  color: blue;
+  background-color: rgba(85, 85, 255, 0.2);
+}
+.missTile:hover{
+  background-color: rgba(85, 85, 255, 0.2) !important;
+}
 .blank {
   background-color: #dfdfdf;
 }

@@ -1,6 +1,6 @@
 import { makeShip } from './ships.js'
 
-function makeGameboards (coordinates) {
+function makePlayer (coordinates) {
   const carrier = makeShip('carrier', coordinates.carrier)
   const battleship = makeShip('battleship', coordinates.battleship)
   const destroyer = makeShip('destroyer', coordinates.destroyer)
@@ -48,4 +48,4 @@ function makeGameboards (coordinates) {
   }
 }
 
-export { makeGameboards }
+export { makePlayer }

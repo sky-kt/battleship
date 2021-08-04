@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import { makeGameboards } from '../src/gameboards.js'
+import { makePlayer } from '../src/players.js'
 
 const gameboardCoordinates = {
   carrier: ['A1', 'A2', 'A3', 'A4', 'A5'],
@@ -10,14 +10,14 @@ const gameboardCoordinates = {
 }
 
 test('Fire random shots', () => {
-  const gameboardsTest = makeGameboards(gameboardCoordinates)
+  const gameboardsTest = makePlayer(gameboardCoordinates)
   expect(gameboardsTest.receiveAttack('A2')).toBe('carrier hit')
   expect(gameboardsTest.receiveAttack('E2')).toBe('patrolBoat hit')
   expect(gameboardsTest.receiveAttack('Z1')).toBe('miss')
 })
 
 test('Sink a ship', () => {
-  const gameboardsTest = makeGameboards(gameboardCoordinates)
+  const gameboardsTest = makePlayer(gameboardCoordinates)
   const targetedCoords = ['A1', 'A2', 'A3', 'A4', 'A5']
   for (const coord in targetedCoords) {
     gameboardsTest.receiveAttack(targetedCoords[coord])
@@ -26,7 +26,7 @@ test('Sink a ship', () => {
 })
 
 test('Sink all ships', () => {
-  const gameboardsTest = makeGameboards(gameboardCoordinates)
+  const gameboardsTest = makePlayer(gameboardCoordinates)
   const targetedCoords = [
     'A1', 'A2', 'A3', 'A4', 'A5', 
     'B1', 'B2', 'B3', 'B4',
