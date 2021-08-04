@@ -66,6 +66,11 @@ h1 {
 .boardTile:hover {
   background-color: #bfbfbf;
 }
+
+.shipTile {
+  background-color: blue;
+}
+
 .blank {
   background-color: #dfdfdf;
 }

@@ -1,3 +1,5 @@
+import { makeGameboards } from './gameboards'
+
 const humanBoard = document.getElementById('humanBoard')
 const robotBoard = document.getElementById('robotBoard')
 const numberRows = document.querySelectorAll('.numberRow')
@@ -56,3 +58,23 @@ const letterRows = document.querySelectorAll('.letterRow');
     })
   }
 })()
+
+const gameboardCoordinates = {
+  carrier: ['A1', 'A2', 'A3', 'A4', 'A5'],
+  battleship: ['B1', 'B2', 'B3', 'B4'],
+  destroyer: ['C1', 'C2', 'C3'],
+  submarine: ['D1', 'D2', 'D3'],
+  patrolBoat: ['E1', 'E2']
+}
+
+for (const ship in Object.values(gameboardCoordinates)) {
+  drawHumanShips(Object.values(gameboardCoordinates)[ship])
+}
+
+function drawHumanShips (coordArray) {
+  for (const coordIdx in coordArray) {
+    const row = Array.from(humanBoard.children)[parseInt(coordArray[coordIdx].slice(1) - 1)]
+    const numEquivalent = coordArray[coordIdx].charCodeAt(0) - 65
+    Array.from(row.children)[numEquivalent].classList.add('shipTile')
+  }
+}
