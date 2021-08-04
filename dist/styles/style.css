@@ -3,7 +3,6 @@
 h1 {
   font-family: Assistant;
 }
-
 #gameBoards {
   display: flex;
   background-color: #dfdfdf;
@@ -11,37 +10,29 @@ h1 {
   width: 100%;
   min-width: 1100px;
 }
-
-#playerContainer {
-  height: 600px;
-  display: flex;
-  align-items: center;
-}
-
-#playerBoard {
+.playerContainer {
   width: 550px;
   height: 550px;
   background-color: #cfcfcf;
   display: grid;
-  grid-template-rows: 30px repeat(10, 1fr);
-  grid-template-columns: 30px repeat(10, 1fr);
+  grid-template-rows: 30px 1fr;
+  grid-template-columns: 30px 1fr;
 }
-
-#computerContainer {
-  height: 600px;
-  display: flex;
-  align-items: center;
-}
-
-#computerBoard {
-  width: 550px;
-  height: 550px;
-  background-color: #cfcfcf;
+.playerBoard {
   display: grid;
-  grid-template-rows: 30px repeat(10, 1fr);
-  grid-template-columns: 30px repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: 1fr;
 }
-
+.boardRow {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(10, 1fr);
+}
+.letterRow {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(10, 1fr)
+}
 .letterTile {
   background-color: #dfdfdf;
   display: flex;
@@ -51,7 +42,11 @@ h1 {
   font-family: Assistant;
   border-bottom: 1px solid black;
 }
-
+.numberRow {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: 1fr;
+}
 .numberTile {
   background-color: #dfdfdf;
   display: flex;
@@ -61,7 +56,6 @@ h1 {
   font-family: Assistant;
   border-right: 1px solid black;
 }
-
 .boardTile {
   border-right: 1px solid black;
   border-bottom: 1px solid black;
@@ -69,4 +63,7 @@ h1 {
 
 .boardTile:hover {
   background-color: #bfbfbf;
+}
+.blank {
+  background-color: #dfdfdf;
 }
