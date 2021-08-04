@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant&display=swap');
+
+h1 {
+  font-family: Assistant;
+}
+
+#gameBoards {
+  display: flex;
+  background-color: #dfdfdf;
+  justify-content: space-evenly;
+  width: 100%;
+  min-width: 1100px;
+}
+
+#playerContainer {
+  height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+#playerBoard {
+  width: 550px;
+  height: 550px;
+  background-color: #cfcfcf;
+  display: grid;
+  grid-template-rows: 30px repeat(10, 1fr);
+  grid-template-columns: 30px repeat(10, 1fr);
+}
+
+#computerContainer {
+  height: 600px;
+  display: flex;
+  align-items: center;
+}
+
+#computerBoard {
+  width: 550px;
+  height: 550px;
+  background-color: #cfcfcf;
+  display: grid;
+  grid-template-rows: 30px repeat(10, 1fr);
+  grid-template-columns: 30px repeat(10, 1fr);
+}
+
+.letterTile {
+  background-color: #dfdfdf;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+  justify-content: center;
+  font-family: Assistant;
+  border-bottom: 1px solid black;
+}
+
+.numberTile {
+  background-color: #dfdfdf;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  align-items: center;
+  font-family: Assistant;
+  border-right: 1px solid black;
+}
+
+.boardTile {
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.boardTile:hover {
+  background-color: #bfbfbf;
+}
