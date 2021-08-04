@@ -8,13 +8,6 @@ function makeGameboards (coordinates) {
   const patrolBoat = makeShip('patrolBoat', coordinates.patrolBoat)
   const missedAttacks = []
 
-  function gameOver () {
-    if (carrier.isSunk() && battleship.isSunk() && destroyer.isSunk() && submarine.isSunk() && patrolBoat.isSunk()) {
-      return true
-    }
-    return false
-  }
-
   function receiveAttack (attackCoordinates) {
     if (coordinates.carrier.includes(attackCoordinates)) {
       carrier.hit(attackCoordinates)
@@ -35,6 +28,13 @@ function makeGameboards (coordinates) {
       missedAttacks.push(attackCoordinates)
       return 'miss'
     }
+  }
+
+  function gameOver () {
+    if (carrier.isSunk() && battleship.isSunk() && destroyer.isSunk() && submarine.isSunk() && patrolBoat.isSunk()) {
+      return true
+    }
+    return false
   }
 
   return {

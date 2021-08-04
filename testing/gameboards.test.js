@@ -1,5 +1,4 @@
 /* eslint-disable*/
-import { makeShip } from '../src/ships.js'
 import { makeGameboards } from '../src/gameboards.js'
 
 const gameboardCoordinates = {
