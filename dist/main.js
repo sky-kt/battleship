@@ -1,1 +1,1 @@
-alert("hello!");
+(()=>{"use strict"})();
