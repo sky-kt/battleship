@@ -1,7 +1,31 @@
+import { robot } from './robot.js'
+
 const humanBoard = document.getElementById('humanBoard')
 const robotBoard = document.getElementById('robotBoard')
 const numberRows = document.querySelectorAll('.numberRow')
 const letterRows = document.querySelectorAll('.letterRow')
+
+const gamelogic = (() => {
+  let canClick = true
+  function makeHumanTurn () {
+    canClick = true
+  }
+
+  function makeRobotTurn () {
+    canClick = false
+    robot.findRandomCoordinate()
+    setTimeout(0, makeHumanTurn())
+  }
+
+  document.addEventListener('click', e => {
+    if (!canClick) {
+      e.stopPropagation()
+      e.preventDefault()
+    }
+  }, true)
+
+  return { makeHumanTurn, makeRobotTurn }
+})()
 
 const gameboard = (() => {
   function makeNumberTiles () {
@@ -49,16 +73,26 @@ const gameboard = (() => {
     }
   }
 
-  function drawHitTile (coordinate) {
-    const row = Array.from(robotBoard.children)[parseInt(coordinate.slice(1) - 1)]
+  function drawHitTile (coordinate, target) {
+    let row
+    if (target === 'robot') {
+      row = Array.from(robotBoard.children)[parseInt(coordinate.slice(1) - 1)]
+    } else {
+      row = Array.from(humanBoard.children)[parseInt(coordinate.slice(1) - 1)]
+    }
     const numEquivalent = coordinate.charCodeAt(0) - 65
     const hitTile = Array.from(row.children)[numEquivalent]
     hitTile.classList.add('hitTile')
     hitTile.textContent = '✖'
   }
 
-  function drawMissTile (coordinate) {
-    const row = Array.from(robotBoard.children)[parseInt(coordinate.slice(1) - 1)]
+  function drawMissTile (coordinate, target) {
+    let row
+    if (target === 'robot') {
+      row = Array.from(robotBoard.children)[parseInt(coordinate.slice(1) - 1)]
+    } else {
+      row = Array.from(humanBoard.children)[parseInt(coordinate.slice(1) - 1)]
+    }
     const numEquivalent = coordinate.charCodeAt(0) - 65
     const missTile = Array.from(row.children)[numEquivalent]
     missTile.classList.add('missTile')
@@ -75,4 +109,4 @@ const gameboard = (() => {
   }
 })()
 
-export { gameboard }
+export { gamelogic, gameboard }

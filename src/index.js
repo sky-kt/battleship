@@ -1,4 +1,4 @@
-import { gameboard } from './gameboard.js'
+import { gamelogic, gameboard } from './gameboard.js'
 import { makePlayer } from './players.js'
 
 // set up gameooards
@@ -31,9 +31,11 @@ boardTiles.forEach(boardTile => {
     const hitOutcomes = ['carrier hit', 'battleship hit', 'destroyer hit', 'submarine hit', 'patrolBoat hit']
 
     if (hitOutcomes.includes(attackResult)) {
-      gameboard.drawHitTile(letter + number)
+      gameboard.drawHitTile(letter + number, 'robot')
     } else {
-      gameboard.drawMissTile(letter + number)
+      gameboard.drawMissTile(letter + number, 'robot')
     }
+
+    gamelogic.makeRobotTurn()
   })
 })
