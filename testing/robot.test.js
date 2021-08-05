@@ -1,10 +1,10 @@
 /* eslint-disable*/
-import { robot } from '../src/robot'
+import { findRandomCoordinate } from '../src/robot'
 
 test('find random coordinate', () => {
-  console.log(robot.findRandomCoordinate())
-  console.log(robot.findRandomCoordinate())
-  console.log(robot.findRandomCoordinate())
-  console.log(robot.findRandomCoordinate())
-  console.log(robot.findRandomCoordinate())
+  console.log(findRandomCoordinate())
+  console.log(findRandomCoordinate())
+  console.log(findRandomCoordinate())
+  console.log(findRandomCoordinate())
+  console.log(findRandomCoordinate())
 })

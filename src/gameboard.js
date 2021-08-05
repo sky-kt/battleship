@@ -1,4 +1,4 @@
-import { robot } from './robot.js'
+import { findRandomCoordinate } from './robot.js'
 
 const humanBoard = document.getElementById('humanBoard')
 const robotBoard = document.getElementById('robotBoard')
@@ -6,15 +6,33 @@ const numberRows = document.querySelectorAll('.numberRow')
 const letterRows = document.querySelectorAll('.letterRow')
 
 const gamelogic = (() => {
+  const hitOutcomes = ['carrier hit', 'battleship hit', 'destroyer hit', 'submarine hit', 'patrolBoat hit']
   let canClick = true
-  function makeHumanTurn () {
-    canClick = true
+
+  function makeHumanTurn (boardTile, robot) {
+    const boardRow = boardTile.parentElement
+    const letter = String.fromCharCode(Array.from(boardRow.children).indexOf(boardTile) + 65)
+    const number = Array.from(boardRow.parentElement.children).indexOf(boardRow) + 1
+    const attackResult = robot.receiveAttack(letter + number)
+
+    if (hitOutcomes.includes(attackResult)) {
+      gameboard.drawHitTile(letter + number, 'robot')
+    } else {
+      gameboard.drawMissTile(letter + number, 'robot')
+    }
   }
 
-  function makeRobotTurn () {
+  function makeRobotTurn (human) {
     canClick = false
-    robot.findRandomCoordinate()
-    setTimeout(0, makeHumanTurn())
+    const randomCoordinate = findRandomCoordinate()
+    const attackResult2 = human.receiveAttack(randomCoordinate)
+
+    if (hitOutcomes.includes(attackResult2)) {
+      gameboard.drawHitTile(randomCoordinate, 'human')
+    } else {
+      gameboard.drawMissTile(randomCoordinate, 'human')
+    }
+    canClick = true
   }
 
   document.addEventListener('click', e => {

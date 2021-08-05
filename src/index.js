@@ -1,6 +1,5 @@
-import { gameboard } from './gameboard.js'
+import { gamelogic, gameboard } from './gameboard.js'
 import { makePlayer } from './players.js'
-import { findRandomCoordinate } from './robot.js'
 
 // set up gameooards
 gameboard.makeGameTiles()
@@ -25,24 +24,7 @@ const robot = makePlayer(gameboardCoordinates)
 const boardTiles = document.querySelectorAll('.boardTile')
 boardTiles.forEach(boardTile => {
   boardTile.addEventListener('click', () => {
-    const boardRow = boardTile.parentElement
-    const letter = String.fromCharCode(Array.from(boardRow.children).indexOf(boardTile) + 65)
-    const number = Array.from(boardRow.parentElement.children).indexOf(boardRow) + 1
-    const attackResult = robot.receiveAttack(letter + number)
-
-    const hitOutcomes = ['carrier hit', 'battleship hit', 'destroyer hit', 'submarine hit', 'patrolBoat hit']
-    if (hitOutcomes.includes(attackResult)) {
-      gameboard.drawHitTile(letter + number, 'robot')
-    } else {
-      gameboard.drawMissTile(letter + number, 'robot')
-    }
-
-    const randomCoordinate = findRandomCoordinate()
-    const attackResult2 = human.receiveAttack(randomCoordinate)
-    if (hitOutcomes.includes(attackResult2)) {
-      gameboard.drawHitTile(randomCoordinate, 'human')
-    } else {
-      gameboard.drawMissTile(randomCoordinate, 'human')
-    }
+    gamelogic.makeHumanTurn(boardTile, robot)
+    gamelogic.makeRobotTurn(human)
   })
 })
