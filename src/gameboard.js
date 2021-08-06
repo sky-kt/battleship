@@ -1,4 +1,5 @@
 import { findRandomCoordinate } from './robot.js'
+import { infoText } from './infoText.js'
 
 const humanBoard = document.getElementById('humanBoard')
 const robotBoard = document.getElementById('robotBoard')
@@ -6,7 +7,6 @@ const numberRows = document.querySelectorAll('.numberRow')
 const letterRows = document.querySelectorAll('.letterRow')
 
 const gamelogic = (() => {
-  const hitOutcomes = ['carrier hit', 'battleship hit', 'destroyer hit', 'submarine hit', 'patrolBoat hit']
   let canClick = true
 
   function makeHumanTurn (boardTile, robot) {
@@ -15,24 +15,29 @@ const gamelogic = (() => {
     const number = Array.from(boardRow.parentElement.children).indexOf(boardRow) + 1
     const attackResult = robot.receiveAttack(letter + number)
 
-    if (hitOutcomes.includes(attackResult)) {
+    if (!attackResult.split(' ').includes('miss')) {
       gameboard.drawHitTile(letter + number, 'robot')
+      if (attackResult.split(' ').includes('sunk')) {
+        gameboard.drawSunkenShip(robot[attackResult.split(' ')[0]].coordinates, 'robot')
+      }
     } else {
       gameboard.drawMissTile(letter + number, 'robot')
     }
+    infoText.update(attackResult)
+    canClick = false
   }
 
   function makeRobotTurn (human) {
-    canClick = false
     const randomCoordinate = findRandomCoordinate()
-    const attackResult2 = human.receiveAttack(randomCoordinate)
+    const attackResult = human.receiveAttack(randomCoordinate)
 
-    if (hitOutcomes.includes(attackResult2)) {
+    if (attackResult.split(' ').includes('hit') || attackResult.split(' ').includes('sunk')) {
       gameboard.drawHitTile(randomCoordinate, 'human')
     } else {
       gameboard.drawMissTile(randomCoordinate, 'human')
     }
-    canClick = true
+    infoText.update(attackResult)
+    setTimeout(() => { canClick = true }, 0)
   }
 
   document.addEventListener('click', e => {
@@ -91,6 +96,20 @@ const gameboard = (() => {
     }
   }
 
+  function drawSunkenShip (coords, target) {
+    for (const coord in coords) {
+      const coordinate = coords[coord]; let row
+      if (target === 'robot') {
+        row = Array.from(robotBoard.children)[parseInt(coordinate.slice(1) - 1)]
+      } else {
+        row = Array.from(humanBoard.children)[parseInt(coordinate.slice(1) - 1)]
+      }
+      const numEquivalent = coordinate.charCodeAt(0) - 65
+      const sunkTile = Array.from(row.children)[numEquivalent]
+      sunkTile.classList.add('sunkTile')
+    }
+  }
+
   function drawHitTile (coordinate, target) {
     let row
     if (target === 'robot') {
@@ -122,6 +141,7 @@ const gameboard = (() => {
     makeNumberTiles,
     makeGameTiles,
     drawHumanShips,
+    drawSunkenShip,
     drawHitTile,
     drawMissTile
   }

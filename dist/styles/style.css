@@ -3,6 +3,22 @@
 h1 {
   font-family: Assistant;
 }
+#infoContainer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+#infoText {
+  width: 1200px;
+  background-color: aliceblue;
+  border-radius: 10px;
+  font-family: Assistant;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #gameBoards {
   display: flex;
   background-color: #dfdfdf;
@@ -64,20 +80,36 @@ h1 {
 }
 .boardTile:hover {
   background-color: #bfbfbf;
+  cursor: pointer;
 }
 .shipTile {
   background-color: blue;
+}
+@keyframes zoomInHit {
+  0% {
+    font-size: 0px;
+  } 100% {
+    font-size: 30px;
+  }
 }
 .hitTile {
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 30px Assistant;
   color: red;
   background-color: rgba(255, 79, 79, 0.2);
+  animation: zoomInHit 0.1s forwards;
+  animation-timing-function: ease-out;
 }
 .hitTile:hover {
   background-color: rgba(255, 79, 79, 0.2) !important;
+}
+@keyframes zoomInMiss {
+  0% {
+    font-size: 0px;
+  } 100% {
+    font-size: 22px;
+  }
 }
 .missTile {
   display: flex;
@@ -86,9 +118,15 @@ h1 {
   font: 20px Assistant;
   color: blue;
   background-color: rgba(85, 85, 255, 0.2);
+  animation: zoomInMiss 0.1s forwards;
+  animation-timing-function: ease-in;
 }
 .missTile:hover{
   background-color: rgba(85, 85, 255, 0.2) !important;
+}
+.sunkTile {
+  background-color: red;
+  color: white;
 }
 .blank {
   background-color: #dfdfdf;

@@ -23,8 +23,10 @@ const robot = makePlayer(gameboardCoordinates)
 
 const boardTiles = document.querySelectorAll('.boardTile')
 boardTiles.forEach(boardTile => {
-  boardTile.addEventListener('click', () => {
+  boardTile.addEventListener('click', async () => {
     gamelogic.makeHumanTurn(boardTile, robot)
-    gamelogic.makeRobotTurn(human)
+    setTimeout(() => {
+      gamelogic.makeRobotTurn(human)
+    }, 500)
   })
 })
