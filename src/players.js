@@ -9,9 +9,7 @@ function makePlayer (coordinates) {
   const missedAttacks = []
 
   function receiveAttack (attackCoordinates) {
-    if (gameOver()) {
-      return 'game over'
-    } else if (coordinates.carrier.includes(attackCoordinates)) {
+    if (coordinates.carrier.includes(attackCoordinates)) {
       carrier.hit(attackCoordinates)
       if (carrier.isSunk()) {
         return 'carrier sunk'

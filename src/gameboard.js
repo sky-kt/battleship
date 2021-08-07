@@ -19,6 +19,9 @@ const gamelogic = (() => {
       gameboard.drawHitTile(letter + number, 'robot')
       if (attackResult.split(' ').includes('sunk')) {
         gameboard.drawSunkenShip(robot[attackResult.split(' ')[0]].coordinates, 'robot')
+        if (robot.gameOver()) {
+          alert('GAME OVER')
+        }
       }
     } else {
       gameboard.drawMissTile(letter + number, 'robot')
@@ -31,8 +34,14 @@ const gamelogic = (() => {
     const randomCoordinate = findRandomCoordinate()
     const attackResult = human.receiveAttack(randomCoordinate)
 
-    if (attackResult.split(' ').includes('hit') || attackResult.split(' ').includes('sunk')) {
+    if (!attackResult.split(' ').includes('miss')) {
       gameboard.drawHitTile(randomCoordinate, 'human')
+      if (attackResult.split(' ').includes('sunk')) {
+        gameboard.drawSunkenShip(human[attackResult.split(' ')[0]].coordinates, 'human')
+        if (human.gameOver()) {
+          alert('GAME OVER')
+        }
+      }
     } else {
       gameboard.drawMissTile(randomCoordinate, 'human')
     }
