@@ -1,11 +1,14 @@
 import { gameboard } from './gameboard.js'
 import { gamelogic } from './gamelogic'
 import { makePlayer } from './players.js'
+import { setup } from './setup.js'
 
 // set up gameooards
 gameboard.makeGameTiles()
 gameboard.makeLetterTiles()
 gameboard.makeNumberTiles()
+setup.createPlayerShips()
+
 
 const gameboardCoordinates = {
   carrier: ['A1', 'B1', 'C1', 'D1', 'E1'],

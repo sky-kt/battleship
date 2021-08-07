@@ -100,4 +100,4 @@ const gameboard = (() => {
   }
 })()
 
-export { gamelogic, gameboard }
+export { gameboard }
