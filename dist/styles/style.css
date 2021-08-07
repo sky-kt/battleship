@@ -77,6 +77,10 @@ h1 {
 .boardTile {
   border-right: 1px solid black;
   border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 20px Assistant;
 }
 .boardTile:hover {
   background-color: #bfbfbf;
@@ -93,9 +97,6 @@ h1 {
   }
 }
 .hitTile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: red;
   background-color: rgba(255, 79, 79, 0.2);
   animation: zoomInHit 0.1s forwards;
@@ -112,21 +113,20 @@ h1 {
   }
 }
 .missTile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font: 20px Assistant;
   color: blue;
   background-color: rgba(85, 85, 255, 0.2);
   animation: zoomInMiss 0.1s forwards;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 }
-.missTile:hover{
-  background-color: rgba(85, 85, 255, 0.2) !important;
+@keyframes becomeSunken {
+  100% {
+    background-color: red;
+    color: white;
+  }
 }
 .sunkTile {
-  background-color: red;
-  color: white;
+  font: 30px Assistant;
+  animation: becomeSunken 1s forwards;
 }
 .blank {
   background-color: #dfdfdf;
