@@ -89,6 +89,18 @@ h1 {
 .shipTile {
   background-color: blue;
 }
+.shipTempTile {
+  background-color: blue;
+}
+.shipTempTile:hover {
+  background-color: blue !important;
+}
+.invalidTempTile {
+  background-color: red;
+}
+.invalidTempTile:hover {
+  background-color: red !important;
+}
 @keyframes zoomInHit {
   0% {
     font-size: 0px;
