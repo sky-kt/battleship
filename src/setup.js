@@ -31,10 +31,7 @@ const setup = (() => {
               const number = Array.from(humanBoard.childNodes).indexOf(boardRow) + 1
               Object.values(finalShipCoords)[shipIdx].push(letter + number)
             }
-            console.log(finalShipCoords)
-            if (++shipIdx > 4) {
-              resolve(finalShipCoords)
-            }
+            if (++shipIdx > 4) { resolve(finalShipCoords) }
           })
         }
       })

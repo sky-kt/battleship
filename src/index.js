@@ -9,26 +9,19 @@ gameboard.makeLetterTiles()
 gameboard.makeNumberTiles();
 
 (async () => {
-  setup.createPlayerShips()
-    .then(gameboardCoordinates => {
-      console.log(gameboardCoordinates)
-      alert('resolved (in index.js)!')
+  const gameboardCoordinates = await setup.createPlayerShips()
+  document.getElementById('infoText').textContent = 'PLAY!'
+  document.getElementById('robotContainer').style.display = ''
+  const human = makePlayer(gameboardCoordinates)
+  const robot = makePlayer(gameboardCoordinates)
 
-      for (const ship in Object.values(gameboardCoordinates)) {
-        gameboard.drawHumanShips(Object.values(gameboardCoordinates)[ship])
-      }
-
-      const human = makePlayer(gameboardCoordinates)
-      const robot = makePlayer(gameboardCoordinates)
-
-      const boardTiles = document.querySelectorAll('.boardTile')
-      boardTiles.forEach(boardTile => {
-        boardTile.addEventListener('click', async () => {
-          gamelogic.makeHumanTurn(boardTile, robot)
-          setTimeout(() => {
-            gamelogic.makeRobotTurn(human)
-          }, 500)
-        })
-      })
+  const boardTiles = document.querySelectorAll('.boardTile')
+  boardTiles.forEach(boardTile => {
+    boardTile.addEventListener('click', () => {
+      gamelogic.makeHumanTurn(boardTile, robot)
+      setTimeout(() => {
+        gamelogic.makeRobotTurn(human)
+      }, 500)
     })
+  })
 })()

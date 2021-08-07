@@ -27,7 +27,7 @@ const gameboard = (() => {
     }
   }
 
-  function makeGameTiles () {
+  function makeGameTiles (target) {
     for (let idx = 0; idx < 10; idx++) {
       const boardRow = document.createElement('div')
       boardRow.classList.add('boardRow')
@@ -38,14 +38,6 @@ const gameboard = (() => {
       }
       humanBoard.appendChild(boardRow)
       robotBoard.appendChild(boardRow.cloneNode(true))
-    }
-  }
-
-  function drawHumanShips (coordArray) {
-    for (const coordIdx in coordArray) {
-      const row = Array.from(humanBoard.children)[parseInt(coordArray[coordIdx].slice(1) - 1)]
-      const numEquivalent = coordArray[coordIdx].charCodeAt(0) - 65
-      Array.from(row.children)[numEquivalent].classList.add('shipTile')
     }
   }
 
@@ -93,7 +85,6 @@ const gameboard = (() => {
     makeLetterTiles,
     makeNumberTiles,
     makeGameTiles,
-    drawHumanShips,
     drawSunkenShip,
     drawHitTile,
     drawMissTile
