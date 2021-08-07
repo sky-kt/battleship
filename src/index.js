@@ -1,4 +1,5 @@
-import { gamelogic, gameboard } from './gameboard.js'
+import { gameboard } from './gameboard.js'
+import { gamelogic } from './gamelogic'
 import { makePlayer } from './players.js'
 
 // set up gameooards
