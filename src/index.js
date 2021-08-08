@@ -12,6 +12,8 @@ gameboard.makeNumberTiles();
   const gameboardCoordinates = await setup.createPlayerShips()
   document.getElementById('infoText').textContent = 'PLAY!'
   document.getElementById('robotContainer').style.display = ''
+  gameboard.initBoards()
+
   const human = makePlayer(gameboardCoordinates)
   const robot = makePlayer(gameboardCoordinates)
 

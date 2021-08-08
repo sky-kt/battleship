@@ -1,5 +1,6 @@
-const humanBoard = document.getElementById('humanBoard')
-const robotBoard = document.getElementById('robotBoard')
+let humanBoard = document.getElementById('humanBoard')
+let robotBoard = document.getElementById('robotBoard')
+
 const numberRows = document.querySelectorAll('.numberRow')
 const letterRows = document.querySelectorAll('.letterRow')
 
@@ -81,13 +82,19 @@ const gameboard = (() => {
     missTile.textContent = '⬤'
   }
 
+  function initBoards () {
+    humanBoard = document.getElementById('humanBoard')
+    robotBoard = document.getElementById('robotBoard')
+  }
+
   return {
     makeLetterTiles,
     makeNumberTiles,
     makeGameTiles,
     drawSunkenShip,
     drawHitTile,
-    drawMissTile
+    drawMissTile,
+    initBoards
   }
 })()
 
