@@ -13,27 +13,61 @@ const setup = (() => {
         const boardRow = boardTile.parentElement
         const rowIdx = Array.from(boardTile.parentElement.children).indexOf(boardTile)
 
-        if (boardTile.parentElement.parentElement === humanBoard) {
-          boardTile.addEventListener('mouseover', () => {
-            for (let idx = 0; idx < shipLengths[shipIdx]; idx++) {
-              Array.from(boardRow.childNodes)[rowIdx + idx].classList.add('shipTempTile')
+        boardTile.addEventListener('mouseover', () => {
+          const targetedTiles = []
+
+          for (let idx = 0; idx < shipLengths[shipIdx]; idx++) {
+            if (rowIdx + idx < 10) {
+              targetedTiles.push(Array.from(boardRow.childNodes)[rowIdx + idx])
+            } else {
+              break
             }
-          })
-          boardTile.addEventListener('mouseout', () => {
-            for (let idx = 0; idx < shipLengths[shipIdx]; idx++) {
-              Array.from(boardRow.childNodes)[rowIdx + idx].classList.remove('shipTempTile')
+          }
+
+          if (targetedTiles.length === shipLengths[shipIdx]) {
+            for (const targetedTile in targetedTiles) {
+              targetedTiles[targetedTile].classList.add('shipTempTile')
             }
-          })
-          boardTile.addEventListener('click', () => {
+          } else {
+            for (const targetedTile in targetedTiles) {
+              targetedTiles[targetedTile].classList.add('invalidTempTile')
+            }
+          }
+        })
+        boardTile.addEventListener('mouseout', () => {
+          const targetedTiles = []
+
+          for (let idx = 0; idx < shipLengths[shipIdx]; idx++) {
+            if (rowIdx + idx < 10) {
+              targetedTiles.push(Array.from(boardRow.childNodes)[rowIdx + idx])
+            } else {
+              break
+            }
+          }
+
+          if (targetedTiles.length === shipLengths[shipIdx]) {
+            for (const targetedTile in targetedTiles) {
+              targetedTiles[targetedTile].classList.remove('shipTempTile')
+            }
+          } else {
+            for (const targetedTile in targetedTiles) {
+              targetedTiles[targetedTile].classList.remove('invalidTempTile')
+            }
+          }
+        })
+        boardTile.addEventListener('click', () => {
+          if (rowIdx + shipLengths[shipIdx] < 10) {
             for (let idx = 0; idx < shipLengths[shipIdx]; idx++) {
-              Array.from(boardRow.childNodes)[rowIdx + idx].classList.add('shipTile')
               const letter = String.fromCharCode(rowIdx + idx + 65)
               const number = Array.from(humanBoard.childNodes).indexOf(boardRow) + 1
               Object.values(finalShipCoords)[shipIdx].push(letter + number)
+              Array.from(boardRow.childNodes)[rowIdx + idx].classList.add('shipTile')
             }
             if (++shipIdx > 4) { resolve(finalShipCoords) }
-          })
-        }
+          } else {
+            alert ('Invalid location...')
+          }
+        })
       })
     })
   }
