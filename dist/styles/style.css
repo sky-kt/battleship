@@ -86,6 +86,15 @@ h1 {
   background-color: #bfbfbf;
   cursor: pointer;
 }
+
+
+.setupButton {
+  background-color: blue;
+  height: 200px;
+  width: 200px;
+}
+
+
 .shipTile {
   background-color: blue;
 }
@@ -101,6 +110,8 @@ h1 {
 .invalidTempTile:hover {
   background-color: red !important;
 }
+
+
 @keyframes zoomInHit {
   0% {
     font-size: 0px;
@@ -130,6 +141,8 @@ h1 {
   animation: zoomInMiss 0.1s forwards;
   animation-timing-function: ease-out;
 }
+
+
 @keyframes becomeSunken {
   100% {
     background-color: red;
